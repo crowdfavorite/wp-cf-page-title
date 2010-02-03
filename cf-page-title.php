@@ -2,7 +2,7 @@
 /*
 Plugin Name: CF Page Title 
 Plugin URI: http://crowdfavorite.com/wordpress/ 
-Description: Outputs smart page title display. 
+Description: Outputs a smart page title (site name + description on home page, page name + site name on all other pages) when wp_title() is called. 
 Version: 1.0 
 Author: Crowd Favorite
 Author URI: http://crowdfavorite.com
