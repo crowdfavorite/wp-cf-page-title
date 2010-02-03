@@ -2,7 +2,7 @@
 /*
 Plugin Name: CF Page Title 
 Plugin URI: http://crowdfavorite.com/wordpress/ 
-Description: Outputs smart page title display. 
+Description: Outputs a smart page title (site name + description on home page, page name + site name on all other pages) when wp_title() is called. 
 Version: 1.0 
 Author: Crowd Favorite
 Author URI: http://crowdfavorite.com
@@ -11,7 +11,7 @@ Author URI: http://crowdfavorite.com
 // ini_set('display_errors', '1'); ini_set('error_reporting', E_ALL);
 
 function cf_page_title($sep = '-') {
-	return _cf_page_title(false, $sep);
+	echo _cf_page_title(false, $sep);
 }
 
 function _cf_page_title($wp_title = false, $sep = '-') {
@@ -28,7 +28,9 @@ function _cf_page_title($wp_title = false, $sep = '-') {
 	}
 	else {
 		if (!$wp_title) {
+			remove_filter('wp_title', 'cf_wp_title', 10, 2);
 			$title = wp_title($sep, false, 'right').esc_html($site);
+			add_filter('wp_title', 'cf_wp_title', 10, 2);
 		}
 		else {
 			// $sep is already appended by wp_title() in the input to the filter
